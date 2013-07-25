@@ -1,0 +1,4 @@
+[submodule "src/redis"]
+	path = src/redis
+	url = https://github.com/antirez/redis
+	branch = unstable
