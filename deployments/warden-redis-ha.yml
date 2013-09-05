@@ -49,7 +49,7 @@ networks:
 resource_pools:
 - name: common
   network: default
-  size: 3
+  size: 6
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -75,7 +75,7 @@ jobs:
 
 - name: redis-slave
   template: redis
-  instances: 2
+  instances: 5
   resource_pool: common
   networks:
   - name: default
@@ -85,6 +85,9 @@ jobs:
     static_ips:
       - 10.244.1.6
       - 10.244.1.10
+      - 10.244.1.14
+      - 10.244.1.18
+      - 10.244.1.22
 
 properties:
   redis:
