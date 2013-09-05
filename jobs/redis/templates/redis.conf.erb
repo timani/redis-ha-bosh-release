@@ -164,14 +164,20 @@ dir ./
 # so for example it is possible to configure the slave to save the DB with a
 # different interval, or to listen to another port, and so on.
 #
-# slaveof <masterip> <masterport>
-
 # If the master is password protected (using the "requirepass" configuration
 # directive below) it is possible to tell the slave to authenticate before
 # starting the replication synchronization process, otherwise the master will
 # refuse the slave request.
 #
-# masterauth <master-password>
+<% if_p("redis.replication.enabled", "redis.replication.master.address") do |_, ip| %>
+  <% if !p("redis.replication.master.enabled") %>
+slaveof <%= ip %> 6379
+    
+    <% if_p("redis.password") do |password| %>
+masterauth <%= password %>
+    <% end %>
+  <% end %>
+<% end %>
 
 # When a slave loses its connection with the master, or when the replication
 # is still in progress, the slave can act in two different ways:

@@ -49,14 +49,31 @@ networks:
 resource_pools:
 - name: common
   network: default
-  size: 2
+  size: 3
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties: {}
 
 jobs:
-- name: redis
+- name: redis-master
+  template: redis
+  instances: 1
+  resource_pool: common
+  networks:
+  - name: default
+    default:
+    - dns
+    - gateway
+    static_ips:
+      - 10.244.1.2
+  properties:
+    redis:
+      replication:
+        master:
+          enabled: true
+
+- name: redis-slave
   template: redis
   instances: 2
   resource_pool: common
@@ -66,9 +83,13 @@ jobs:
     - dns
     - gateway
     static_ips:
-      - 10.244.1.2
       - 10.244.1.6
+      - 10.244.1.10
 
 properties:
   redis:
+    replication:
+      enabled: true
+      master:
+        address: 10.244.1.2
     password: hello

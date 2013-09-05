@@ -11,3 +11,12 @@ packages:
 properties:
   redis.password:
     description: Password to access Redis server
+
+  redis.replication.enabled:
+    description: Enable Redis master-slave replication
+    default: false
+  redis.replication.master.enabled:
+    description: Enable this job instance to be the master
+    default: false
+  redis.replication.master.address:
+    description: IP Adress of the master for the slaves
