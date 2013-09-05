@@ -92,4 +92,4 @@ properties:
       enabled: true
       master:
         address: 10.244.1.2
-    password: hello
+    password: hello1
