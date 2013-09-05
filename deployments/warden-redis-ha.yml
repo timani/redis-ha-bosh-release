@@ -69,4 +69,6 @@ jobs:
       - 10.244.1.2
       - 10.244.1.6
 
-properties: {}
+properties:
+  redis:
+    password: hello

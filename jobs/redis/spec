@@ -3,6 +3,11 @@ name: redis
 
 templates:
   redis_ctl: bin/redis_ctl
+  redis.conf.erb: config/redis.conf
 
 packages:
   - redis
+
+properties:
+  redis.password:
+    description: Password to access Redis server
