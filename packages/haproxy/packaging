@@ -1,0 +1,8 @@
+set -e # Abort script on any command that exit with a non zero value
+set -x # Show all of the commands that are being executed in the script
+set -u # Error if an environment variable isn't set
+
+tar xvf haproxy/haproxy-1.4.24.tar.gz
+cd haproxy-1.4.24
+make TARGET=linux26
+make PREFIX=${BOSH_INSTALL_TARGET} install
