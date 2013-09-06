@@ -5,10 +5,10 @@ defaults
     timeout server  50000ms
 
 frontend redis-frontend
-  bind              *:6379
+  bind              *:<%= p("redis.port") %>
   default_backend   redis-backend
 
 backend redis-backend
 <% p("haproxy.backend.servers").each_with_index do |address, index| %>
-  server redis-backend-server<%= index %> <%= address %>:6379 maxconn 32
+  server redis-backend-server<%= index %> <%= address %>:<%= p("redis.port") %> maxconn 32
 <% end %>
