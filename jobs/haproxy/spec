@@ -1,0 +1,13 @@
+---
+name: haproxy
+
+templates:
+  haproxy_ctl: bin/haproxy_ctl
+  haproxy.cfg.erb: config/haproxy.cfg
+
+packages:
+  - haproxy
+
+properties:
+  haproxy.backend.servers:
+    description: List of servers in the backend

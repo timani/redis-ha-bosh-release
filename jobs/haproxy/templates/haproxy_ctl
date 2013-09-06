@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e
+set -u
+set -x
+
+JOB_NAME=haproxy
+
+LOG_DIR=/var/vcap/sys/log/$JOB_NAME
+PID_DIR=/var/vcap/sys/run/$JOB_NAME
+
+JOB_DIR=/var/vcap/jobs/$JOB_NAME
+PACKAGE_DIR=/var/vcap/packages/$JOB_NAME
+
+PID_FILE=$PID_DIR/$JOB_NAME.pid
+
+case $1 in
+  start)
+    mkdir -p $PID_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PID_FILE
+
+    exec $PACKAGE_DIR/sbin/haproxy -f $JOB_DIR/config/haproxy.cfg \
+        -p $PID_FILE
+        >>$LOG_DIR/$JOB_NAME.stdout.log \
+        2>>$LOG_DIR/$JOB_NAME.stderr.log
+    ;;
+
+  stop)
+    ;;
+  *)
+    echo "Usage: redis_ctl {start|stop}"
+    ;;
+
+esac
+exit 0
