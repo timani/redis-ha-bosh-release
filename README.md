@@ -21,11 +21,11 @@ failover, monitoring, and notifications when the system becomes
 unstable. I felt like this was a brilliant candidate to show the power
 and flexibility that using [BOSH][bosh] can bring.
 
-This release also serves as a teaching and example material that shows,
+This release also serves as teaching and example material that shows,
 what I feel, are the best practices and idioms for when creating a
 release. This project will be considered a success if it allows anyone
-with a BOSH director so create a functional, high-availability Redis
-cluster - on any infrastructure that BOSH supports - with next to no
+with a BOSH director to create a functional, high-availability Redis
+cluster — on any infrastructure that BOSH supports — with next to no
 effort.
 
 Let's see how it goes.
